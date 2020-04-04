@@ -1,5 +1,5 @@
 tool
-extends Button
+extends TextureButton
 
 export (Color, RGB) var colour setget set_colour
 
