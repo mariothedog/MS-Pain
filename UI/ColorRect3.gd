@@ -2,7 +2,8 @@ extends ColorRect
 
 # Credit to https://godotengine.org/qa/24621/painting-game-persist-drawing
 
-const circle_connecting_gap = 5
+const brush_size = 7
+const circle_connecting_gap = 2
 
 var _pen = null
 var _prev_mouse_pos = Vector2()
@@ -35,10 +36,10 @@ func _on_draw():
 	
 	if Input.is_action_pressed("draw"):
 		if _prev_mouse_pos == mouse_pos:
-			_pen.draw_circle(mouse_pos, 10, global.brush_colour)
+			_pen.draw_circle(mouse_pos, brush_size, global.brush_colour)
 		else:
 			for i in range(0, _prev_mouse_pos.distance_to(mouse_pos), circle_connecting_gap):
 				var offset = _prev_mouse_pos.direction_to(mouse_pos) * i
-				_pen.draw_circle(_prev_mouse_pos + offset, 10, global.brush_colour)
+				_pen.draw_circle(_prev_mouse_pos + offset, brush_size, global.brush_colour)
 	
 	_prev_mouse_pos = mouse_pos
