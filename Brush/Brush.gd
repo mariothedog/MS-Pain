@@ -26,11 +26,10 @@ var brush_textures = {
 func _physics_process(_delta):
 	var target_position = get_global_mouse_position()
 	
-	position = lerp(position, target_position, 0.5)
-	
-	var target_rotation = get_global_mouse_position().rotated(-PI/2).angle()
-
+	var target_rotation = max(min((target_position - position).x / 50, PI/1.5), -PI/1.5)
 	rotation = lerp_angle(rotation, target_rotation, 0.1)
+	
+	position = lerp(position, target_position, 0.5)
 
 func change_colour(colour):
 	var rounded_colour = Color(stepify(colour.r, 0.000001), stepify(colour.g, 0.000001), stepify(colour.b, 0.000001), 1)
