@@ -1,8 +1,9 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://Brush/Brush.tscn" type="PackedScene" id=1]
 [ext_resource path="res://UI/MS Pain.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Level/Friends.gd" type="Script" id=3]
+[ext_resource path="res://Level/Enemies.gd" type="Script" id=4]
 
 [node name="Level" type="Node2D"]
 
@@ -11,6 +12,9 @@ current = true
 
 [node name="Friends" type="Node2D" parent="."]
 script = ExtResource( 3 )
+
+[node name="Enemies" type="Node2D" parent="."]
+script = ExtResource( 4 )
 
 [node name="Brush" parent="." instance=ExtResource( 1 )]
 

@@ -44,7 +44,7 @@ func _process(_delta):
 	_pen.update()
 
 func _on_draw():
-	if not can_draw:
+	if not can_draw or global.started:
 		return
 	
 	var mouse_pos = get_local_mouse_position()
