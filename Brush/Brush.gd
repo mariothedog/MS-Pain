@@ -1,7 +1,5 @@
 extends KinematicBody2D
 
-var brush_colour = Color(0, 0, 0, 1)
-
 var brush_textures = {
 	Color(0, 0, 0, 1) : preload("res://Brush/Art/Black Brush.png"),
 	Color(0.498039, 0.498039, 0.498039, 1) : preload("res://Brush/Art/Grey Brush.png"),
@@ -34,7 +32,7 @@ func _physics_process(_delta):
 	position = lerp(position, target_position, 0.5)
 
 func change_colour(colour):
-	brush_colour = colour
+	global.brush_colour = colour
 	
 	var rounded_colour = Color(stepify(colour.r, 0.000001), stepify(colour.g, 0.000001), stepify(colour.b, 0.000001), 1)
 	$Sprite.texture = brush_textures[rounded_colour]

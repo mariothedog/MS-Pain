@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=4 format=2]
 
 [ext_resource path="res://UI/Colour Button.tscn" type="PackedScene" id=1]
 [ext_resource path="res://UI/MS Pain.gd" type="Script" id=2]
+[ext_resource path="res://UI/ColorRect3.gd" type="Script" id=3]
 
 [node name="MS Pain" type="CanvasLayer"]
 layer = -1
@@ -232,6 +233,7 @@ margin_left = 10.0
 margin_top = 10.0
 margin_right = 1014.0
 margin_bottom = 515.0
+script = ExtResource( 3 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
