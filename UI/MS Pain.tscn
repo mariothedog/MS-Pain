@@ -228,7 +228,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="ColorRect3" type="ColorRect" parent="VSplitContainer/ColorRect2/MarginContainer"]
+[node name="Drawing Board" type="ColorRect" parent="VSplitContainer/ColorRect2/MarginContainer"]
 margin_left = 10.0
 margin_top = 10.0
 margin_right = 1014.0

@@ -2,31 +2,40 @@ extends ColorRect
 
 # Credit to https://godotengine.org/qa/24621/painting-game-persist-drawing
 
+var shader_material = preload("res://Resources/Transparent Shader Material.tres")
+
+signal drawing_finished
+
 const brush_size = 7
 const circle_connecting_gap = 2
 
 var _pen = null
 var _prev_mouse_pos = Vector2()
+var _viewport = null
+var _board = null
+
+var was_drawing_last_time = false
 
 func _ready():
-	var viewport = Viewport.new()
+	_viewport = Viewport.new()
 	var rect = get_rect()
-	viewport.size = rect.size
-	viewport.usage = Viewport.USAGE_2D
-	viewport.render_target_clear_mode = Viewport.CLEAR_MODE_ONLY_NEXT_FRAME
-	viewport.render_target_v_flip = true
+	_viewport.size = rect.size
+	_viewport.usage = Viewport.USAGE_2D
+	_viewport.render_target_clear_mode = Viewport.CLEAR_MODE_ONLY_NEXT_FRAME
+	_viewport.render_target_v_flip = true
 
 	_pen = Node2D.new()
-	viewport.add_child(_pen)
+	_viewport.add_child(_pen)
 	_pen.connect("draw", self, "_on_draw")
 
-	add_child(viewport)
+	add_child(_viewport)
 
 	# Use a sprite to display the result texture
-	var rt = viewport.get_texture()
-	var board = TextureRect.new()
-	board.set_texture(rt)
-	add_child(board)
+	var rt = _viewport.get_texture()
+	_board = TextureRect.new()
+	_board.set_texture(rt)
+	_board.material = shader_material
+	add_child(_board)
 
 func _process(_delta):
 	_pen.update()
@@ -41,5 +50,13 @@ func _on_draw():
 			for i in range(0, _prev_mouse_pos.distance_to(mouse_pos), circle_connecting_gap):
 				var offset = _prev_mouse_pos.direction_to(mouse_pos) * i
 				_pen.draw_circle(_prev_mouse_pos + offset, brush_size, global.brush_colour)
+		
+		was_drawing_last_time = true
+	else:
+		if was_drawing_last_time:
+			var drawing = _board.get_texture()
+			emit_signal("drawing_finished", [drawing])
+		
+		was_drawing_last_time = false
 	
 	_prev_mouse_pos = mouse_pos
