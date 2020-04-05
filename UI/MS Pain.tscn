@@ -2,7 +2,7 @@
 
 [ext_resource path="res://UI/Colour Button.tscn" type="PackedScene" id=1]
 [ext_resource path="res://UI/MS Pain.gd" type="Script" id=2]
-[ext_resource path="res://UI/ColorRect3.gd" type="Script" id=3]
+[ext_resource path="res://UI/Drawing Board.gd" type="Script" id=3]
 
 [node name="MS Pain" type="CanvasLayer"]
 layer = -1
@@ -237,3 +237,5 @@ script = ExtResource( 3 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
+[connection signal="mouse_entered" from="VSplitContainer/ColorRect2/MarginContainer/Drawing Board" to="VSplitContainer/ColorRect2/MarginContainer/Drawing Board" method="_on_Drawing_Board_mouse_entered"]
+[connection signal="mouse_exited" from="VSplitContainer/ColorRect2/MarginContainer/Drawing Board" to="VSplitContainer/ColorRect2/MarginContainer/Drawing Board" method="_on_Drawing_Board_mouse_exited"]
