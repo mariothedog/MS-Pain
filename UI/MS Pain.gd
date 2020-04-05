@@ -8,4 +8,11 @@ func _ready():
 		colour_button.connect("pressed", get_parent().get_node("Brush"), "change_colour", [colour_button.colour])
 
 func _on_Start_pressed():
-	global.started = true
+	if not global.started:
+		global.started = true
+		get_parent().get_node("Enemies").start_spawning()
+
+func _on_Button_pressed():
+	global.no_game = true
+	$"VSplitContainer/ColorRect/MarginContainer/HSplitContainer/Start".visible = false
+	$VSplitContainer/ColorRect2/MarginContainer/Tutorial.visible = false

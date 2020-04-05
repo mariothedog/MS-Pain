@@ -61,7 +61,7 @@ func _on_draw():
 		
 		was_drawing_last_time = true
 	else:
-		if was_drawing_last_time:
+		if was_drawing_last_time and not global.no_game:
 			var drawing = _board.get_texture()
 			emit_signal("drawing_finished", drawing)
 			
